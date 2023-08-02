@@ -1,0 +1,28 @@
+/* WeatherChart.scss */
+.CurrentWeather__rightSide {
+    width: 100%; /* Добавьте это свойство */
+    background-color: rgba(213, 234, 255, 0.6);
+    border-radius: 15px;
+
+    .recharts-legend-wrapper {
+      display: none;
+    }
+    
+}
+  
+  #root > div > main > div > div.CurrentWeather > div.CurrentWeather__rightSide > div > div > svg > g.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis > line{
+    display: none;
+  }
+  .recharts-cartesian-axis-tick-line{
+    display: none;
+  }
+  .recharts-cartesian-grid-horizontal{
+    display: none;
+  }
+  #root > div > main > div > div.CurrentWeather > div.CurrentWeather__rightSide > div{
+    align-items: center;
+  }
+  #root > div > main > div > div.CurrentWeather > div.CurrentWeather__rightSide > div > div > svg > g.recharts-layer.recharts-cartesian-axis.recharts-yAxis.yAxis{
+    display: none;
+  }
+  

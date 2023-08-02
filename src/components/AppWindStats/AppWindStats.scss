@@ -1,0 +1,56 @@
+/* AppWindStats.scss */
+@import '../../style/variables.scss';
+
+.AppWindStats{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.AppStat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ecf3f8;
+  border-radius: 20px;
+  padding: 20px;
+    .AppStat__text-title{
+        font-weight: 600;
+        font-size: 24px;
+    }
+    .App__text-description{
+        font-weight: 500;
+        color: #9e9f9f;
+        letter-spacing: 0.03em;
+        font-size: 18px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+    .AppStat__text span {
+        font-weight: 600;
+        font-size: 22px;
+    }
+}
+.compass {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+    background-image: url('../../resources/compass.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden; /* Обрезаем arrowCompass за пределами круга */
+    span {
+      width: 12px;
+      height: 110px;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      background-image: url('../../resources/arrow.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform-origin: center center;
+      transform: translate(50%, -50%) rotate(34 + deg); /* Поворачиваем стрелку */
+    }
+}
+

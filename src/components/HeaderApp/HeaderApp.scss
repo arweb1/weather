@@ -1,0 +1,36 @@
+@import '../../style/variables.scss';
+
+.HeaderApp{
+    display: flex;
+    justify-content: space-between;
+    &__search{
+        display: flex;
+        align-items: center;
+        & input {
+            width: 20vw;
+            height: 35px;
+            border-radius: 50px;
+            border: 0;
+            font-size: 14px;
+            color: $gray;
+            letter-spacing: 1px;
+            padding-left: 10px;
+        }
+        .icon{
+            height: 30px;
+        }
+    }
+    &__profile{
+        display: flex;
+        align-items: center;
+        .icon{
+            height: 25px;
+            margin-right: 25px;
+        }
+        .profilePicture{
+            height: 40px;
+            width: 40px;
+            border-radius: 50px;
+        }
+    }
+}

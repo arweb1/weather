@@ -1,0 +1,12 @@
+@import '../../style/variables.scss';
+
+.App{
+    width: 100vw;
+    height: 100vh;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: $gray;
+}

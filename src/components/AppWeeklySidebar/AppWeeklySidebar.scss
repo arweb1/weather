@@ -1,0 +1,99 @@
+@import '../../style/variables.scss';
+
+.AppWeeklySideBar{
+    margin-right: 30px;
+    height: 100vh;
+    border-left: 1px solid #e1e8ec;
+    padding-left: 30px;
+
+    &__chooseWeek{
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+
+        & p {
+            font-size: 20px;
+            font-weight: 700;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
+        .icon{
+            height: 20px;
+        }
+    }
+
+    &__today{
+        margin-top: 40px;
+        & p {
+            font-weight: 700;
+            font-size: 16px;
+        }  
+        &-list{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            &-data{
+                margin-top: 15px;
+                width: 70px;
+                height: 110px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 15px;
+                padding-top: 5%;
+                padding-bottom: 10px;
+                &.active{
+                    background-color: #c4e2ff;
+                }
+                .time{
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+                .icon{
+                    & svg {
+                        font-size: 24px;
+                    }
+                    height: 30px;
+                }
+                .weather{
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+            } 
+        }
+    }
+    &__nextDays{
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &-day{
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-text{
+                .day{
+                    font-weight: 600;
+                    font-size: 16px;
+                    letter-spacing: .05em;
+                }
+                .data{
+                    font-weight: 300;
+                    font-size: 14px;
+                    letter-spacing: .05em;
+                }
+            }
+            p{
+                font-size: 20px;
+                font-weight: 700;
+                
+            }
+            .icon{
+                font-size: 40px;
+            }
+        }
+    }
+}
