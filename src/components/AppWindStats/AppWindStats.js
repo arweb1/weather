@@ -24,7 +24,7 @@ function AppWindStats() {
             <div className="AppStat__text">
                 <p className="AppStat__text-title">Wind</p>
                 <p className="App__text-description">Today wind speed</p>
-                <span>12km/h</span>
+                <span>11km/h</span>
             </div>
             <div className="AppStat__rate">
                 <div className="compass">
