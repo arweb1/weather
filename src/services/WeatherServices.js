@@ -10,7 +10,7 @@ const useWeatherServices = () => {
         const res = await request(
             `${_apiBase}${_apiKey}&q=Kiev&aqi=no`
         )
-        return _transformWeatherData(res)
+        return _transformWeatherData(res);
     }
 
     const _transformWeatherData = (data) => {
