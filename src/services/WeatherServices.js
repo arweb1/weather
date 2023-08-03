@@ -8,7 +8,7 @@ const useWeatherServices = () => {
 
     const getWeather = async () => {
         const res = await request(
-            `${_apiBase}${_apiKey}&q=Kiev&aqi=no`
+            `${_apiBase}${_apiKey}&q=Lviv&aqi=no`
         )
         return _transformWeatherData(res);
     }
