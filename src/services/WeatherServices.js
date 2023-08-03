@@ -26,7 +26,9 @@ const useWeatherServices = () => {
             windDir: current.wind_dir,
             windKph: current.wind_kph + ' kp/h',
             condition: current.condition.text,
-            conditionImage: current.condition.icon
+            conditionImage: current.condition.icon,
+            humidity: current.humidity,
+            pressure: current.pressure_mb
         }
     }
 

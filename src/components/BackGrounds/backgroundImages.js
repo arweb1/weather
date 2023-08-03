@@ -1,8 +1,15 @@
 // components/BackGrounds/backgroundImages.js
 const backgroundImages = {
-  'Thundery outbreaks possible': "url('/backgrounds/clear2.jpg')",
-  'Light rain shower': "url('https://img.freepik.com/free-photo/rain-effect-city-night-background_23-2148099014.jpg?w=1380&t=st=1690977652~exp=1690978252~hmac=d6541a71f2a79ed2b1e2ec9b504da01b15714fc93c798ca0c4e73810c44c1f91')",
-  'Rain': "url('https://img.freepik.com/premium-photo/white-clouds-abstract-sky-sky-background-art-blurred-glowing_548821-33200.jpg?w=1380')",
+  'Thundery outbreaks possible': "url('/backgrounds/clear_dark.jpg')",
+  'Light rain shower': "url('/backgrounds/clear_dark.jpg')",
+  'Light rain': "url('/backgrounds/storm_light.jpg')",
+  'Rain': "url('/backgrounds/clear_dark.jpg')",
+  'Moderate rain': "url('/backgrounds/storm_light.jpg')",
+  'Moderate rain at times': "url('/backgrounds/storm_light.jpg')",
+  'Patchy rain possible': "url('/backgrounds/storm_light.jpg')",
+  'Partly cloudy': "url('/backgrounds/clear_dark.jpg')",
+  'Clear': "url('/backgrounds/clear_dark.jpg')",
+  'Sunny': "url('/backgrounds/clear_dark.jpg')"
 };
 
 export default backgroundImages;

@@ -1,0 +1,27 @@
+.uv-index-indicator {
+    width: 120px;
+    height: 120px;
+    position: relative;
+  
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  
+    .progress-background {
+      transition: stroke-dasharray 0.8s ease;
+    }
+  
+    .progress-line {
+      fill: none;
+      transition: stroke-dasharray 0.8s ease;
+    }
+  
+    .progress-text {
+      font-size: 14px;
+      font-weight: bold;
+      fill: #000;
+    //   transform: rotate(-90deg);
+    }
+  }
+  

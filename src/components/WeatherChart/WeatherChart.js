@@ -19,10 +19,10 @@ const WeatherChart = () => {
         <Tooltip />
         <Legend />
         <CartesianGrid stroke="#f5f5f5" />
-        <Line type="monotone" dataKey="temperature" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="temperature" stroke="#28639d" activeDot={{ r: 8 }} />
         <Text
-          x={200} // Позиция по оси X
-          y={330} // Позиция по оси Y
+          x={200}
+          y={330}
           width={400} // Максимальная ширина текста
           className="weather-text" // Класс для стилизации текста
         >

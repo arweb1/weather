@@ -1,0 +1,44 @@
+.progress-bar {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  .html {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  circle {
+    fill: transparent;
+    stroke: #c4e2ff; /* Change color of the circle */
+    stroke-width: 10; /* Change width of the circle */
+  }
+  
+  .progress-line {
+    fill: transparent;
+    stroke: #24609b; /* Change color of the progress line */
+    stroke-width: 10; /* Change width of the progress line */
+    transform-origin: center;
+    border-radius: 50%;
+    transition: .3s all;
+    stroke-linecap: round;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+}
+

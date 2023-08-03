@@ -36,12 +36,13 @@ function CurrentWeather() {
 
     const spinner = loading ? <Loader/> : null;
     const errorMessage = error ? <ErrorMessage/> : null;
-    const content = !(loading || !weather) ? <View data={weather}/> : null;
-
     const backgroundImage = weather ? backgroundImages[weather.condition] : null;
     const containerStyle = {
         backgroundImage: backgroundImage || '',
     };
+    const content = !(loading || !weather) ? <View data={weather} containerStyle={containerStyle}/> : null;
+
+    
     
     return (
     <div className='CurrentWeather' style={containerStyle}>
@@ -52,43 +53,45 @@ function CurrentWeather() {
   )
 }
 
-const View = ({data}) => {
-    const {city, degrees, windKph, gustKph, localTime, condition, conditionImage} = data
+const View = ({data, containerStyle }) => {
+    const {city, degrees, windKph, gustKph, localTime, condition, conditionImage, humidity} = data;
 
+    const textStyle = containerStyle.backgroundImage && containerStyle.backgroundImage.includes('light')
+    ? { color: '#ffffff' } : {};
     return(
         <>
             <div className="CurrentWeather__leftSide">
                 <div className="CurrentWeather__leftSide-firstRow">
-                    <span className='city'>
+                    <span className='city' style={textStyle}>
                         <LocationOnOutlinedIcon/>
                         {city}
                     </span>
-                    <p className='date'>Today {localTime}</p>
+                    <p className='date' style={textStyle}>Today {localTime}</p>
                 </div>
                 <div className="CurrentWeather__leftSide-secondRow">
-                    <p className='degrees'>{degrees} <span>°</span></p>
-                    <p className="weather">
+                    <p className='degrees' style={textStyle}>{degrees} <span>°</span></p>
+                    <p className="weather" style={textStyle}>
                         {condition}
                         <img src={conditionImage} alt="conditionImage" />
                     </p>
                 </div>
                 <div className="CurrentWeather__leftSide-thirdRow">
-                    <span>
+                    <span style={textStyle}>
                         <AirOutlinedIcon/>
                         {gustKph}
                     </span>
-                    <span>
+                    <span style={textStyle}>
                         <WaterDropOutlinedIcon/>
-                        32%
+                        {humidity}%
                     </span>
-                    <span>
+                    <span style={textStyle}>
                         <WindPowerOutlinedIcon/>
                         {windKph}
                     </span>
                 </div>
             </div>
             <div className="CurrentWeather__rightSide">
-                <span>Temperature</span>
+                <span style={textStyle}>Temperature</span>
                 <WeatherChart/>
             </div>
         </>
