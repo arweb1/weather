@@ -4,12 +4,14 @@ import NotificationAddOutlinedIcon from '@mui/icons-material/NotificationAddOutl
 import profilePicture from '../../resources/profile-picture.jpg'
 import './HeaderApp.scss'
 
+import SearchCity from '../SearchCity/SearchCity';
+
 function HeaderApp() {
   return (
     <div className='HeaderApp'>
         <div className="HeaderApp__search">
             <SearchOutlinedIcon className="icon"/>
-            <input type="text" placeholder='Search something here...'/>
+            <SearchCity/>
         </div>
         <div className="HeaderApp__profile">
             <NotificationAddOutlinedIcon className="icon"/>
