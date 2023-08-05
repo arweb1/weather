@@ -51,7 +51,7 @@ function UVIndexIndicator({ uvIndex }) {
           className="progress-text"
           textAnchor="middle"
           dominantBaseline="central"
-          transform={`rotate(${90 - progressValue * 18} 50 50)`}
+          
         >
           {progressName}
         </text>

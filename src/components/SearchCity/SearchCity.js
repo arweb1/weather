@@ -10,10 +10,20 @@ function SearchCity({ onSearchChange }) {
   const [search, setSearch] = useState(null);
 
   const loadOptions = (inputValue) => {
-    return fetch(`${GEO_API_URL}/cities?minPopulation=100000namePrefix=${inputValue}`, geoApiOptions)
+    return fetch(
+        `${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${inputValue}`, geoApiOptions
+      )
       .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err))
+      .then(response => {
+        return{
+          options: response.data.map(city => {
+            return{
+              value: city.city,
+              label: `${city.name}, ${city.country}`
+            }
+          })
+        }
+      })
   }
 
   const handleOnChange = (searchData) => {

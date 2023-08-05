@@ -13,20 +13,24 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import useWeatherServices from '../../services/WeatherServices';
-import img from '../../resources/backgrounds/clear2.jpg'
 
 import backgroundImages from '../BackGrounds/backgroundImages';
 
-function CurrentWeather() {
-    const {loading, error, getWeather, clearEror} = useWeatherServices();
-    const [weather, setWeather] = useState(null)
+function CurrentWeather({selectedCity}) {
+    const {loading, error, getWeather, clearError} = useWeatherServices();
+    const [weather, setWeather] = useState(null);
 
     useEffect(() => {
-        updateWeather()
-    }, [])
+        if(selectedCity){
+            updateWeather(selectedCity)
+        }else{
+            updateWeather()
+        }
+    }, [selectedCity])
 
-    const updateWeather = () => {
-        getWeather()
+    const updateWeather = (city) => {
+        clearError()
+        getWeather(city)
             .then(onLoaded)
     }
 
@@ -69,7 +73,7 @@ const View = ({data, containerStyle }) => {
                     <p className='date' style={textStyle}>Today {localTime}</p>
                 </div>
                 <div className="CurrentWeather__leftSide-secondRow">
-                    <p className='degrees' style={textStyle}>{degrees} <span>°</span></p>
+                    <p className='degrees' style={textStyle}>{degrees} </p>
                     <p className="weather" style={textStyle}>
                         {condition}
                         <img src={conditionImage} alt="conditionImage" />

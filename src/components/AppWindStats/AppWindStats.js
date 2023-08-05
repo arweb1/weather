@@ -9,16 +9,17 @@ import Loader from '../Loader/Loader';
 import CircleProgressBar from './CircleProgressBar';
 import UVIndexIndicator from './UVIndexIndicator';
 
-function AppWindStats() {
+function AppWindStats({selectedCity}) {
     const {loading, error, getWeather, clearError} = useWeatherServices();
     const [weather, setWeather] = useState(null)
 
     useEffect(() => {
-        updateData()
-    }, [])
+        updateData(selectedCity)
+    }, [selectedCity])
 
-    const updateData = () => {
-        getWeather()
+    const updateData = (city) => {
+        clearError()
+        getWeather(city)
             .then(onLoaded)
     }
 

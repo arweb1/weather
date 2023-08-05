@@ -6,11 +6,17 @@ const useWeatherServices = () => {
     const _apiBase = 'http://api.weatherapi.com/v1/current.json?';
     const _apiKey = 'key=31df9645a3324df8b7481306230208';
 
-    const getWeather = async () => {
+    const getWeather = async (city = 'Kiev') => {
         const res = await request(
-            `${_apiBase}${_apiKey}&q=Kiev&aqi=no`
+            `${_apiBase}${_apiKey}&q=${city}&aqi=no`
         )
         return _transformWeatherData(res);
+    }
+
+    const getTodayForecastWeather = async () => {
+        const res = await request(
+            `${_apiBase}${_apiKey}&q=Kiev&aqi=no`
+        ) 
     }
 
     const _transformWeatherData = (data) => {
