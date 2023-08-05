@@ -3,6 +3,7 @@ import { MainPage, MapPage } from "../pages"
 
 import AppSidebar from "../AppSidebar/AppSidebar";
 import AppWeeklySideBar from "../AppWeeklySidebar/AppWeeklySideBar";
+import TestingApi from "../test/testingApi";
 import './App.scss'
 
 const App = () => {

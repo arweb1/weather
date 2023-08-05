@@ -5,7 +5,11 @@ import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import AppWindStats from '../AppWindStats/AppWindStats';
 
 const MainPage = () => {
-    const [selectedCity, setSelectedCity] = useState(null);
+    const defaultCity = {
+        lat: 50.45466,
+        lon: 30.5238
+    }
+    const [selectedCity, setSelectedCity] = useState(defaultCity);
 
     const handleCityChange = (cityData) => {
         setSelectedCity(cityData);
@@ -15,7 +19,7 @@ const MainPage = () => {
         <>
             <div className="MainPage">
                 <HeaderApp onSearchChange={handleCityChange} />
-                <CurrentWeather selectedCity={selectedCity} /> {/* Pass selectedCity here */}
+                <CurrentWeather selectedCity={selectedCity} /> 
                 <AppWindStats selectedCity={selectedCity}/>
             </div>
         </>

@@ -7,7 +7,7 @@ const backgroundImages = {
   'Moderate rain': "url('/backgrounds/storm_light.jpg')",
   'Moderate rain at times': "url('/backgrounds/storm_light.jpg')",
   'Patchy rain possible': "url('/backgrounds/storm_light.jpg')",
-  'Partly cloudy': "url('/backgrounds/clear_dark.jpg')",
+  'Clouds': "url('/backgrounds/clear_dark.jpg')",
   'Clear': "url('/backgrounds/clear_dark.jpg')",
   'Sunny': "url('/backgrounds/clear_dark.jpg')",
   'Overcast': "url('/backgrounds/storm_light.jpg')"

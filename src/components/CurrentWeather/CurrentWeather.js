@@ -19,19 +19,20 @@ import backgroundImages from '../BackGrounds/backgroundImages';
 function CurrentWeather({selectedCity}) {
     const {loading, error, getWeather, clearError} = useWeatherServices();
     const [weather, setWeather] = useState(null);
-
+    
     useEffect(() => {
         if(selectedCity){
             updateWeather(selectedCity)
-        }else{
-            updateWeather()
         }
     }, [selectedCity])
 
-    const updateWeather = (city) => {
-        clearError()
-        getWeather(city)
-            .then(onLoaded)
+    const updateWeather = ({lat, lon}) => {
+        
+        if (lat && lon) {
+            clearError()
+            getWeather(lat, lon)
+                .then(onLoaded)
+        }
     }
 
     const onLoaded = (weather) => {
@@ -58,7 +59,7 @@ function CurrentWeather({selectedCity}) {
 }
 
 const View = ({data, containerStyle }) => {
-    const {city, degrees, windKph, gustKph, localTime, condition, conditionImage, humidity} = data;
+    const {city, degrees, windKph, gustKph, localTime, condition, humidity} = data;
 
     const textStyle = containerStyle.backgroundImage && containerStyle.backgroundImage.includes('light')
     ? { color: '#ffffff' } : {};
@@ -70,13 +71,12 @@ const View = ({data, containerStyle }) => {
                         <LocationOnOutlinedIcon/>
                         {city}
                     </span>
-                    <p className='date' style={textStyle}>Today {localTime}</p>
+                    <p className='date' style={textStyle}>{localTime}</p>
                 </div>
                 <div className="CurrentWeather__leftSide-secondRow">
                     <p className='degrees' style={textStyle}>{degrees} </p>
                     <p className="weather" style={textStyle}>
                         {condition}
-                        <img src={conditionImage} alt="conditionImage" />
                     </p>
                 </div>
                 <div className="CurrentWeather__leftSide-thirdRow">
