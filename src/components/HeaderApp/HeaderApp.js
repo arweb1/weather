@@ -7,9 +7,9 @@ import './HeaderApp.scss';
 import SearchCity from '../SearchCity/SearchCity';
 
 function HeaderApp({ onSearchChange }) {
+  
   const handleCityChange = (selectedOption) => {
     const [lat, lon] = selectedOption.value.split(' ');
-    console.log(lat, lon);
     onSearchChange({lat, lon});
   };
   return (

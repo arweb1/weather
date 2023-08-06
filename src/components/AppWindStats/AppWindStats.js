@@ -14,13 +14,18 @@ function AppWindStats({selectedCity}) {
     const [weather, setWeather] = useState(null)
 
     useEffect(() => {
-        updateData(selectedCity)
+        if(selectedCity){
+            updateWeather(selectedCity)
+        }
     }, [selectedCity])
 
-    const updateData = (city) => {
-        clearError()
-        getWeather(city)
-            .then(onLoaded)
+    const updateWeather = ({lat, lon}) => {
+        console.log(lat, lon)
+        if (lat && lon) {
+            clearError()
+            getWeather(lat, lon)
+                .then(onLoaded)
+        }
     }
 
     const onLoaded = (data) => {

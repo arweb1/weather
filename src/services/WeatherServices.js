@@ -32,15 +32,21 @@ const useWeatherServices = () => {
     // //     }
     // // }
 
-    const _apiBase = 'https://api.openweathermap.org/data/2.5/weather';
+    const _apiBase = 'https://api.openweathermap.org/data/2.5';
     const _apiKey = '53b8b14b7d22b2ef912e2a2c19d766d9'
 
     const getWeather = async (lat, lon) => {
-        console.log(lat, lon);
         const res = await request(
-            `${_apiBase}?lat=${lat}&lon=${lon}&appid=${_apiKey}`
+            `${_apiBase}/weather?lat=${lat}&lon=${lon}&appid=${_apiKey}`
         )
         return _transformWeatherData(res) 
+    }
+
+    const getWeatherForecast = async(lat, lon) => {
+        const res = await request(
+            `/forecast/hourly?lat=${lat}&lon=${lon}&appid=${_apiKey}`
+        )
+        console.log(res.json());
     }
 
     const _transformWeatherData = (data) => {

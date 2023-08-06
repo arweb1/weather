@@ -14,7 +14,6 @@ const MainPage = () => {
     const handleCityChange = (cityData) => {
         setSelectedCity(cityData);
     };
-
     return (
         <>
             <div className="MainPage">

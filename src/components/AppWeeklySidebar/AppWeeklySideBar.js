@@ -1,11 +1,15 @@
 import React from 'react'
+
+import { useState, useEffet } from 'react';
+
 import './AppWeeklySidebar.scss'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import WbCloudyOutlinedIcon from '@mui/icons-material/WbCloudyOutlined';
-
+import useWeatherServices from '../../services/WeatherServices';
 
 function AppWeeklySideBar() {
+    
   return (
     <div className='AppWeeklySideBar'>
         <div className="AppWeeklySideBar__chooseWeek">
