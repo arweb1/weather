@@ -20,7 +20,6 @@ function AppWindStats({selectedCity}) {
     }, [selectedCity])
 
     const updateWeather = ({lat, lon}) => {
-        console.log(lat, lon)
         if (lat && lon) {
             clearError()
             getWeather(lat, lon)

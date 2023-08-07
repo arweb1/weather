@@ -1,0 +1,11 @@
+.MainPage {
+display: flex;
+    .mainPage{
+        flex: 80%;
+        padding: 50px;
+    }
+    .sidebar{
+        flex: 20%;
+        border-left: 1px solid #e1e8ec;
+    }
+}

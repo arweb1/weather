@@ -10,7 +10,8 @@ const backgroundImages = {
   'Clouds': "url('/backgrounds/clear_dark.jpg')",
   'Clear': "url('/backgrounds/clear_dark.jpg')",
   'Sunny': "url('/backgrounds/clear_dark.jpg')",
-  'Overcast': "url('/backgrounds/storm_light.jpg')"
+  'Overcast': "url('/backgrounds/storm_light.jpg')",
+  'Haze': "url('/backgrounds/storm_light.jpg')"
 };
 
 export default backgroundImages;
