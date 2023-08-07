@@ -1,16 +1,58 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Text, ResponsiveContainer } from 'recharts';
-
+import { useState, useEffect } from 'react'
 import './WeatherChart.scss'
 
-const data = [
-  { name: 'Morning', temperature: 15 },
-  { name: 'Afternoon', temperature: 14 },
-  { name: 'Evening', temperature: 16 },
-  { name: 'Night', temperature: 12 },
-];
+import useWeatherServices from '../../services/WeatherServices'
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const WeatherChart = () => {
+const WeatherChart = ({ selectedCity }) => {
+  const [weather, setWeather] = useState(null);
+  const { loading, error, getWeatherForecast, clearError } = useWeatherServices()
+
+  useEffect(() => {
+    if (selectedCity) {
+      updateWeather(selectedCity)
+    }
+  }, [selectedCity])
+
+  const updateWeather = ({ lat, lon }) => {
+    if (lat && lon) {
+      clearError()
+      getWeatherForecast(lat, lon)
+        .then(onLoaded)
+    }
+  }
+
+  const onLoaded = (weather) => {
+    setWeather((prevWeather) => ({
+      ...prevWeather,
+      ...weather,
+    }));
+  };
+  const spinner = loading ? <Loader /> : null;
+  const errorMessage = error ? <ErrorMessage /> : null;
+  const content = !(error || loading || !weather) ? <View dataChart={weather} /> : null
+
+  return (
+    <>
+      {spinner}
+      {errorMessage}
+      {content}
+    </>
+  );
+};
+
+
+const View = ({ dataChart }) => {
+  const { daily } = dataChart
+  const data = [
+    { name: 'Morning', temperature: daily[0].tempMorning },
+    { name: 'Afternoon', temperature: daily[0].temp },
+    { name: 'Evening', temperature: daily[0].tempEve },
+    { name: 'Night', temperature: daily[0].tempNight },
+  ];
   return (
     <ResponsiveContainer width="100%" height={200} className='weatherChart-class'>
       <LineChart data={data} margin={{ top: 10, right: 50, left: 10, bottom: 30 }}>
@@ -29,7 +71,6 @@ const WeatherChart = () => {
         </Text>
       </LineChart>
     </ResponsiveContainer>
-  );
-};
-
+  )
+}
 export default WeatherChart;

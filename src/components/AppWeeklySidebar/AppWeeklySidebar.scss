@@ -3,9 +3,7 @@
 .AppWeeklySideBar{
     margin-right: 30px;
     height: 100vh;
-    border-left: 1px solid #e1e8ec;
     padding-left: 30px;
-
     &__chooseWeek{
         margin-top: 50px;
         display: flex;
@@ -96,4 +94,33 @@
             }
         }
     }
+}
+
+.slick-slide{
+    width: 70px!important;
+    text-align: center;
+    margin-right: 15px;
+    button{
+        &::before{
+            color: black
+        }
+    }
+}
+
+.slider-container {
+  width: 100%; /* Измените ширину на нужную величину, например, 80% или 300px */
+}
+
+.AppWeeklySideBar__nextDays {
+  width: 100%; /* Измените ширину на нужную величину, например, 100% или 500px */
+}
+.slick-track{
+    width: 1000%!important;
+}
+.AppWeeklySideBar__today-list-data.active{
+    display: flex!important;
+    justify-content: space-around!important;
+}
+.slick-prev:before, .slick-next:before {
+    color: black!important;
 }

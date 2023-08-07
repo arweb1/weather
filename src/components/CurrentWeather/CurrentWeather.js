@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 import './CurrentWeather.scss'
 import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
@@ -13,86 +13,89 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import useWeatherServices from '../../services/WeatherServices';
-import img from '../../resources/backgrounds/clear2.jpg'
 
 import backgroundImages from '../BackGrounds/backgroundImages';
 
-function CurrentWeather() {
-    const {loading, error, getWeather, clearEror} = useWeatherServices();
-    const [weather, setWeather] = useState(null)
+function CurrentWeather({ selectedCity }) {
+    const { loading, error, getWeather, clearError } = useWeatherServices();
+    const [weather, setWeather] = useState(null);
 
     useEffect(() => {
-        updateWeather()
-    }, [])
+        if (selectedCity) {
+            updateWeather(selectedCity)
+        }
+    }, [selectedCity])
 
-    const updateWeather = () => {
-        getWeather()
-            .then(onLoaded)
+
+    const updateWeather = ({ lat, lon }) => {
+        if (lat && lon) {
+            clearError()
+            getWeather(lat, lon)
+                .then(onLoaded)
+        }
     }
 
     const onLoaded = (weather) => {
         setWeather(weather)
     }
 
-    const spinner = loading ? <Loader/> : null;
-    const errorMessage = error ? <ErrorMessage/> : null;
+    const spinner = loading ? <Loader /> : null;
+    const errorMessage = error ? <ErrorMessage /> : null;
     const backgroundImage = weather ? backgroundImages[weather.condition] : null;
     const containerStyle = {
         backgroundImage: backgroundImage || '',
     };
-    const content = !(loading || !weather) ? <View data={weather} containerStyle={containerStyle}/> : null;
+    const content = !(loading || !weather) ? <View data={weather} containerStyle={containerStyle} selectedCity={selectedCity} /> : null;
 
-    
-    
+
     return (
-    <div className='CurrentWeather' style={containerStyle}>
-        {spinner}
-        {content}
-        {errorMessage}
-    </div>
-  )
+        <div className='CurrentWeather' style={containerStyle}>
+            {spinner}
+            {content}
+            {errorMessage}
+        </div>
+    )
 }
 
-const View = ({data, containerStyle }) => {
-    const {city, degrees, windKph, gustKph, localTime, condition, conditionImage, humidity} = data;
-
+const View = ({ data, containerStyle, selectedCity }) => {
+    const { city, degrees, windKph, gustKph, localTime, condition, humidity } = data;
+    console.log(selectedCity)
     const textStyle = containerStyle.backgroundImage && containerStyle.backgroundImage.includes('light')
-    ? { color: '#ffffff' } : {};
-    return(
+        ? { color: '#ffffff' } : {};
+    return (
         <>
             <div className="CurrentWeather__leftSide">
                 <div className="CurrentWeather__leftSide-firstRow">
                     <span className='city' style={textStyle}>
-                        <LocationOnOutlinedIcon/>
+                        <LocationOnOutlinedIcon />
                         {city}
                     </span>
-                    <p className='date' style={textStyle}>Today {localTime}</p>
+                    <p className='date' style={textStyle}>{localTime}</p>
                 </div>
                 <div className="CurrentWeather__leftSide-secondRow">
-                    <p className='degrees' style={textStyle}>{degrees} <span>°</span></p>
+                    <p className='degrees' style={textStyle}>{degrees} </p>
                     <p className="weather" style={textStyle}>
                         {condition}
-                        <img src={conditionImage} alt="conditionImage" />
                     </p>
                 </div>
                 <div className="CurrentWeather__leftSide-thirdRow">
                     <span style={textStyle}>
-                        <AirOutlinedIcon/>
+                        <AirOutlinedIcon />
                         {gustKph}
                     </span>
                     <span style={textStyle}>
-                        <WaterDropOutlinedIcon/>
+                        <WaterDropOutlinedIcon />
                         {humidity}%
                     </span>
                     <span style={textStyle}>
-                        <WindPowerOutlinedIcon/>
+                        <WindPowerOutlinedIcon />
                         {windKph}
                     </span>
                 </div>
             </div>
             <div className="CurrentWeather__rightSide">
                 <span style={textStyle}>Temperature</span>
-                <WeatherChart/>
+                <WeatherChart selectedCity={selectedCity} />
             </div>
         </>
     )

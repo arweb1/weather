@@ -33,7 +33,7 @@ function UVIndexIndicator({ uvIndex }) {
           strokeWidth="10"
           strokeLinecap="round"
         />
-        <path
+        {/* <path
           className="progress-line"
           d={`M 50 5 A 45 45 0 ${progressValue > 5 ? 1 : 0} 1 ${
             50 + 45 * 0.8 * Math.cos((progressValue * 18 + 90) * (Math.PI / 180))
@@ -43,15 +43,14 @@ function UVIndexIndicator({ uvIndex }) {
           stroke={linearGradient}
           strokeWidth="10"
           strokeLinecap="round"
-        />
-        {/* Исправляем ориентацию текста */}
+        /> */}
         <text
           x="50"
           y="50"
           className="progress-text"
           textAnchor="middle"
           dominantBaseline="central"
-          transform={`rotate(${90 - progressValue * 18} 50 50)`}
+          
         >
           {progressName}
         </text>

@@ -9,17 +9,22 @@ import Loader from '../Loader/Loader';
 import CircleProgressBar from './CircleProgressBar';
 import UVIndexIndicator from './UVIndexIndicator';
 
-function AppWindStats() {
+function AppWindStats({selectedCity}) {
     const {loading, error, getWeather, clearError} = useWeatherServices();
     const [weather, setWeather] = useState(null)
 
     useEffect(() => {
-        updateData()
-    }, [])
+        if(selectedCity){
+            updateWeather(selectedCity)
+        }
+    }, [selectedCity])
 
-    const updateData = () => {
-        getWeather()
-            .then(onLoaded)
+    const updateWeather = ({lat, lon}) => {
+        if (lat && lon) {
+            clearError()
+            getWeather(lat, lon)
+                .then(onLoaded)
+        }
     }
 
     const onLoaded = (data) => {
@@ -37,33 +42,10 @@ function AppWindStats() {
   );
 }
 
-function getWindDirectionAngle(direction) {
-    const directions = {
-      N: 0,
-      NNE: 22.5,
-      NE: 45,
-      ENE: 67.5,
-      E: 90,
-      ESE: 112.5,
-      SE: 135,
-      SSE: 157.5,
-      S: 180,
-      SSW: 202.5,
-      SW: 225,
-      WSW: 247.5,
-      W: 270,
-      WNW: 292.5,
-      NW: 315,
-      NNW: 337.5,
-    };
-  
-    return directions[direction] || 0;
-  }
-
 const View = ({data}) => {
     const {windKph, windDir, humidity, pressure} = data;
 
-    const arrowRotation = `rotate(${getWindDirectionAngle(windDir)}deg)`;
+    const arrowRotation = `rotate(${windDir}deg)`;
     const [progressPercent, setProgressPercent] = useState(null)
 
 

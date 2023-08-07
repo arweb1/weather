@@ -50,20 +50,19 @@ html{
 }
 .app {
     display: flex;
-    width: 100vw;
     height: 100vh;
     background-color: #fff;
     .Sidebar{
         flex: 15%;
     }
     .main {
-        flex: 68%;
-        padding: 50px;
+        flex: 85%;
+
         position: relative;
     }
-    .AppWeeklySideBar{
-        flex: 17%;
-    }
+    // .AppWeeklySideBar{
+    //     flex: 17%;
+    // }
 }
 
 .pulse {

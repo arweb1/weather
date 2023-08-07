@@ -1,42 +1,73 @@
 import { useHttp } from "../components/Hooks/http.hook";
+import { DateTime } from 'luxon'
 
 const useWeatherServices = () => {
-    const {loading, error, request, clearError} = useHttp();
+    const { loading, error, request, clearError } = useHttp();
 
-    const _apiBase = 'http://api.weatherapi.com/v1/current.json?';
-    const _apiKey = 'key=31df9645a3324df8b7481306230208';
+    const _apiBase = 'http://pro.openweathermap.org';
+    const _apiKey = '53b8b14b7d22b2ef912e2a2c19d766d9'
 
-    const getWeather = async () => {
+    const getWeather = async (lat, lon) => {
         const res = await request(
-            `${_apiBase}${_apiKey}&q=Kiev&aqi=no`
+            `${_apiBase}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${_apiKey}`
         )
-        return _transformWeatherData(res);
+        return _transformWeatherData(res)
+    }
+
+    const getWeatherForecast = async (lat, lon) => {
+        const res = await request(
+            `${_apiBase}/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${_apiKey}`
+        )
+        return _transformForecasWeather(res)
     }
 
     const _transformWeatherData = (data) => {
-        const { location, current} = data;
         return {
-            city: location.name,
-            region: location.region,
-            country: location.country,
-            localTime: location.localtime,
-            degrees: current.feelslike_c,
-            gustKph: current.gust_kph + ' kp/h',
-            isDay: current.is_day,
-            windDir: current.wind_dir,
-            windKph: current.wind_kph + ' kp/h',
-            condition: current.condition.text,
-            conditionImage: current.condition.icon,
-            humidity: current.humidity,
-            pressure: current.pressure_mb
+            city: data.name,
+            localTime: data.timezone / 3600 + 'UTC',
+            degrees: (data.main.temp - 273.15).toFixed(1),
+            gustKph: data.wind.gust + "m/sec",
+            windKph: data.wind.speed + "m/sec",
+            windDir: data.wind.deg,
+            condition: data.weather[0].main,
+            humidity: data.main.humidity,
+            pressure: data.main.pressure
         }
     }
 
-    return{
-        loading, 
+    const formatLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
+
+    const _transformForecasWeather = (data) => {
+        let { daily, hourly, timezone } = data;
+        daily = daily.slice(1, 10).map(d => {
+            return {
+                title: d.weather[0].main,
+                icon: d.weather[0].icon,
+                temp: (d.temp.day - 273.15).toFixed(1),
+                localTime: formatLocalTime(d.dt, timezone, "ccc"),
+                tempEve: (d.temp.eve - 273.15).toFixed(1),
+                tempNight: (d.temp.night - 273.15).toFixed(1),
+                tempMorning: (d.temp.morn - 273.15).toFixed(1),
+            }
+        })
+        hourly = hourly.slice(1, 9).map(d => {
+            return {
+                title: d.weather[0].main,
+                icon: d.weather[0].icon,
+                temp: (d.temp - 273.15).toFixed(1),
+                localTime: formatLocalTime(d.dt, timezone, "hh:mm a")
+            }
+        })
+        return { daily, hourly, timezone }
+    }
+
+
+    return {
+        loading,
         error,
         getWeather,
-        clearError
+        getWeatherForecast,
+        clearError,
     }
 }
 

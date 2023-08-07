@@ -48,10 +48,11 @@
                 font-weight: 600;
                 position: relative;
 
-                span{
+                &::after{
+                    content: '°';
                     position: absolute;
                     font-size: 56px;
-                    font-weight: 400;
+                    font-weight: 600;
                     top: 7px;
                 }
             }
