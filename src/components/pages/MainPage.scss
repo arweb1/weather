@@ -3,6 +3,9 @@ display: flex;
     .mainPage{
         flex: 80%;
         padding: 50px;
+        display: sticky;
+        overflow-y: auto;
+        height: 100vh;
     }
     .sidebar{
         flex: 20%;
