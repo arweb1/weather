@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from 'react-slick';
 import { useState, useEffect } from 'react';
-
+//test commit
 import './AppWeeklySidebar.scss'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
