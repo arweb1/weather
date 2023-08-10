@@ -49,7 +49,7 @@ function AppWeeklySideBar({ selectedCity }) {
 
 const View = ({ data }) => {
     const { daily, hourly } = data;
-
+    console.log(daily);
     const sliderSettings = {
         dots: false,
         infinite: false,

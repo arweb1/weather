@@ -3,6 +3,8 @@
 .AppWeeklySideBar{
     margin-right: 30px;
     padding-left: 30px;
+    overflow-y: auto;
+
     &__chooseWeek{
         margin-top: 50px;
         display: flex;
@@ -67,7 +69,7 @@
         flex-direction: column;
         justify-content: space-between;
         &-day{
-            margin-top: 25px;
+            margin-top: 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
