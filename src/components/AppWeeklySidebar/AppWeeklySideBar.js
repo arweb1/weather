@@ -20,7 +20,7 @@ function AppWeeklySideBar({ selectedCity }) {
         if (selectedCity) {
             updateWeather(selectedCity);
         }
-    }, [selectedCity]); // Добавленная зависимость
+    }, [selectedCity]); // Добавленная зависимостьokj
 
     const updateWeather = ({ lat, lon }) => {
         if (lat && lon) {
